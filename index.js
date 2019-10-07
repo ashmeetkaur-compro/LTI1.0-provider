@@ -4,7 +4,7 @@ const oauth = require('oauth-sign');
 const app = express();
 const method = 'POST';
 const timestamp = Math.round(Date.now() / 1000);
-const config = require('E:/PracticeProjects/lti1.1_demo/config.json');
+const config = require('E:/PracticeProjects/lti1.1_provider/config.json');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -31,7 +31,7 @@ console.log("client  Signature ->"+req.body.signature);
 
 
 if(consumer_signature === signature) {
-  res.sendFile("E:/PracticeProjects/lti1.1_demo/launch.json");
+  res.sendFile("E:/PracticeProjects/lti1.1_provider/launch.json");
 }
 else{
   res.json({"message": "Signature not verified"});
