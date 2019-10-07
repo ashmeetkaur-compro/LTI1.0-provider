@@ -4,7 +4,13 @@ const oauth = require('oauth-sign');
 const app = express();
 const method = 'POST';
 const timestamp = Math.round(Date.now() / 1000);
-const config = require('E:/PracticeProjects/lti1.1_provider/config.json');
+
+var path = require('path');
+
+var jsonPath = path.join(__dirname, 'config');
+
+let congif = __dirname+"config.js";
+const config = require(jsonPath);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
