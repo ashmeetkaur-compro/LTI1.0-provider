@@ -5,7 +5,8 @@ const app = express();
 const method = 'POST';
 
 var path = require('path');
-const config = require(path.join(__dirname, 'config'));
+var jsonPath = path.join(__dirname, 'config');
+const config = require(jsonPath);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -15,8 +16,8 @@ app.post('/', (req,res) => {
 var action = "https://lti1-provider.herokuapp.com/";
 var consumer_signature = req.body.oauth_signature;
 delete req.body.oauth_signature;
-var provider_signature = oauth.hmacsign(method, action, req.body, config.secret);
-console.log("provider  Signature ->"+provider_signature);
+var signature = oauth.hmacsign(method, action, req.body, config.secret);
+console.log("provider  Signature ->"+signature);
 console.log("client  Signature ->"+consumer_signature);
 
 
