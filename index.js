@@ -37,7 +37,7 @@ console.log("client  Signature ->"+req.body.signature);
 
 
 if(consumer_signature === signature) {
-  res.sendFile("../lti1.1_provider/launch.json");
+  res.json({"message": "Signature verified"});
 }
 else{
   res.json({"message": "Signature not verified"});
