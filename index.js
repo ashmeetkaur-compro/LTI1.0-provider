@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.post('/', (req,res) => {
-var action = "http://localhost:5000/";
+var action = "https://lti1-provider.herokuapp.com/";
 var consumer_signature = req.body.oauth_signature;
 delete req.body.oauth_signature;
 var signature = oauth.hmacsign(method, action, req.body, config.secret);
