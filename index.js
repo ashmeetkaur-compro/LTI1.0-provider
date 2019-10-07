@@ -4,9 +4,8 @@ const oauth = require('oauth-sign');
 const app = express();
 const method = 'POST';
 
-var path = require('path');
-var jsonPath = path.join(__dirname, 'config');
-const config = require(jsonPath);
+const path = require('path');
+const config = require(path.join(__dirname, 'config'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
