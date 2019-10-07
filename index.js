@@ -37,7 +37,7 @@ console.log("client  Signature ->"+req.body.signature);
 
 
 if(consumer_signature === signature) {
-  res.sendFile("E:/PracticeProjects/lti1.1_provider/launch.json");
+  res.sendFile("../lti1.1_provider/launch.json");
 }
 else{
   res.json({"message": "Signature not verified"});
@@ -49,5 +49,3 @@ var port = (process.env.PORT || 5000);
 var server = app.listen(port, function () {
   console.log("Express is working on port " + port);
 });
-
-
