@@ -12,10 +12,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.post('/', (req,res) => {
-var action = "https://lti1-provider.herokuapp.com/";
 var consumer_signature = req.body.oauth_signature;
 delete req.body.oauth_signature;
-var provider_signature = oauth.hmacsign(method, action, req.body, config.secret);
+var provider_signature = oauth.hmacsign(method, config.Provider_URL, req.body, config.secret);
 
 if(consumer_signature === provider_signature) {
   res.json({"message": "LTI Provider Launch successful"});

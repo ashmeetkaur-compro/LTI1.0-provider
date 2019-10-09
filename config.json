@@ -1,3 +1,5 @@
 {
-  "secret" : "secret"
+  "Provider_URL" : "https://lti1-provider.herokuapp.com/",
+  "secret" : "secret",
+  "consumer_key": "consumer"
 }
