@@ -1,5 +1,6 @@
 {
   "Provider_URL" : "https://lti1-provider.herokuapp.com/",
   "secret" : "secret",
-  "consumer_key": "consumer"
+  "consumer_key": "consumer",
+  "timestamp" : "900"
 }

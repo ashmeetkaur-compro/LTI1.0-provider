@@ -8,18 +8,28 @@ exports.statusLaunch = (req,res) => {
 
 exports.verifyLaunch = (req,res) => {
 
-  if(req.body.lti_message_type != "basic-lti-launch-request" || req.body.lti_version != "LTI-1p0" || req.body.oauth_version != "1.0" || req.body.oauth_signature_method != "HMAC-SHA1") {
+  // Return if the request parameters are invalid
+  if(req.body.lti_message_type != "basic-lti-launch-request" || req.body.lti_version != "LTI-1p0" || req.body.oauth_version != "1.0" || req.body.oauth_signature_method != "HMAC-SHA1" || !req.body.oauth_nonce) {
     res.render('error', {
       invalidRequest: true,
     });
     return;
   }
+
+  // Return if the consumer keys is not present
   if(req.body.oauth_consumer_key != config.consumer_key) {
     res.render('error', {
       keyNotFound: true,
     });
     return;
   }
+
+  // Check if the timestamp is older than specified
+  if(parseInt(req.body.oauth_timestamp) > Math.round(Date.now() / 1000) && parseInt(req.body.oauth_timestamp) < (Math.round(Date.now() / 1000) - config.timestamp)) {
+    res.render('error', {
+      invalidRequest: true,
+    });
+  };
   
   let consumer_signature = req.body.oauth_signature;
   delete req.body.oauth_signature;
