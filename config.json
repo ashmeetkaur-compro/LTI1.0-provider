@@ -1,5 +1,5 @@
 {
-  "Provider_URL" : "http://localhost:5000/",
+  "Provider_URL" : "https://lti1-provider.herokuapp.com/",
   "secret" : "secret",
   "consumer_key": "consumer"
 }
