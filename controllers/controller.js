@@ -3,10 +3,23 @@ const config = require('../config');
 const method = 'POST';
 
 exports.statusLaunch = (req,res) => {
-  res.send('Hello World!')
+  res.send('Hello World!');
 };
 
 exports.verifyLaunch = (req,res) => {
+
+  if(req.body.lti_message_type != "basic-lti-launch-request" || req.body.lti_version != "LTI-1p0" || req.body.oauth_version != "1.0" || req.body.oauth_signature_method != "HMAC-SHA1") {
+    res.render('error', {
+      invalidRequest: true,
+    });
+    return;
+  }
+  if(req.body.oauth_consumer_key != config.consumer_key) {
+    res.render('error', {
+      keyNotFound: true,
+    });
+    return;
+  }
   
   let consumer_signature = req.body.oauth_signature;
   delete req.body.oauth_signature;
@@ -14,10 +27,14 @@ exports.verifyLaunch = (req,res) => {
  
 
   if(consumer_signature === provider_signature) {
-    res.json({"message": "LTI Provider Launch successful"});
+    res.render('successLaunch', {
+      ltiParamters : JSON.parse(JSON.stringify(req.body))
+    });
   }
   else{
-    res.json({"message": "Signature not verified"});
+    res.render('error', {
+      validated: true,
+    });
   }
 };
 
