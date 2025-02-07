@@ -4,11 +4,12 @@
   "extends": [
     "config:recommended"
   ],
+  "labels": ["deploy-to-dev"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
       "autoApprove": true,
-      "automerge": true
+      "automerge": true,
     }
   ],
 "timezone": "Asia/Kolkata",
