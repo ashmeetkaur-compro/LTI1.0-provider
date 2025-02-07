@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
-  ]
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "autoApprove": true,
+      "automerge": true
+    }
+  ],
+"timezone": "Asia/Kolkata",
+"schedule": ["* 0-3 * * *"],
+"automergeSchedule": ["* 0-3 * * 7"],
+"assignees": ["ashmeetkaur-compro"]
 }
