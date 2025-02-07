@@ -7,7 +7,7 @@
   "labels": ["deploy-to-dev"],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchUpdateTypes": ["minor", "patch", "major"],
       "autoApprove": true,
       "automerge": true,
     }
