@@ -3,7 +3,7 @@ const config = require('../config');
 const method = 'POST';
 
 exports.statusLaunch = (req,res) => {
-  res.send('Hello World!');
+  res.send('Hello World this is new!');
 };
 
 exports.verifyLaunch = (req,res) => {
